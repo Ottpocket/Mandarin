@@ -1,6 +1,6 @@
 '''
 Randomly generates tables of pinyin with accompanying tones
-
+pinyin copy pastaed from https://www.yellowbridge.com/chinese/pinyin-combo.php
 '''
 import numpy as np
 

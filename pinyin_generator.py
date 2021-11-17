@@ -3,6 +3,14 @@ Randomly generates tables of pinyin with accompanying tones
 pinyin copy pastaed from https://www.yellowbridge.com/chinese/pinyin-combo.php
 '''
 import numpy as np
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--nrows', default=10, type=int)
+parser.add_argument('--ncols', default=10, type=int)
+args = parser.parse_args()
+NROWS = args.nrows
+NCOLS = args.ncols
 
 pinyin = '''
 	a	ba	pa	ma	fa	da	ta	na	la	ga	ka	ha				zha	cha	sha		za	ca	sa	
@@ -47,9 +55,9 @@ pinyin = [name if '\n' not in name else name.replace('\n','') for name in pinyin
 
 nrows = 10
 ncols = 10
-for i in range(nrows):
+for i in range(NROWS):
     print(f'{i+1 : 4}: ', end = " ")
-    for i in range(ncols):
+    for i in range(NCOLS):
         pin_rand = np.random.choice(pinyin, size = 1, replace=True)[0]
         print(f'{pin_rand :8}', end='')
     print('')

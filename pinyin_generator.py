@@ -58,8 +58,8 @@ ncols = 10
 for i in range(NROWS):
     print(f'{i+1 : 4}: ', end = " ")
     for i in range(NCOLS):
-	tone = np.random.choice([1,2,3,4,5], 1)[0]
+        tone = np.random.choice([1,2,3,4,5], 1)[0]
         pin_rand = np.random.choice(pinyin, size = 1, replace=True)[0]
-	word = f'{tone}-{pin_rand}'
+        word = f'{tone}-{pin_rand}'
         print(f'{word :8}', end='')
     print('')

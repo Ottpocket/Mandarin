@@ -1,17 +1,22 @@
 '''
 Randomly generates tables of pinyin with accompanying tones
-pinyin copy pastaed from https://www.yellowbridge.com/chinese/pinyin-combo.php
+pinyin copy pastaed from https://www.yellowbridge.com/chinese/pinyin-combo.php.
+
+Has a second timer if desired
 '''
 import numpy as np
 import argparse
+from tqdm import tqdm
+from time import sleep
 parser = argparse.ArgumentParser()
 
 parser.add_argument('--nrows', default=10, type=int)
 parser.add_argument('--ncols', default=10, type=int)
+parser.add_argument('--time',  default=-1, type=int)
 args = parser.parse_args()
 NROWS = args.nrows
 NCOLS = args.ncols
-
+TIME = args.time
 pinyin = '''
 	a	ba	pa	ma	fa	da	ta	na	la	ga	ka	ha				zha	cha	sha		za	ca	sa	
 	o	bo	po	mo	fo																	
@@ -63,3 +68,13 @@ for i in range(NROWS):
         word = f'{tone}-{pin_rand}'
         print(f'{word :8}', end='')
     print('')
+
+if TIME < 0:
+    exit()
+else:
+    
+    for sec in tqdm(range(TIME)):
+        sleep(1.)
+    print("\033[H\033[J", end="") #from: https://stackoverflow.com/questions/517970/how-to-clear-the-interpreter-console
+    
+    

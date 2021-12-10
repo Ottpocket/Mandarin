@@ -2,14 +2,28 @@
 Randomly generates tables of pinyin with accompanying tones
 pinyin copy pastaed from https://www.yellowbridge.com/chinese/pinyin-combo.php.
 
-Has a second timer if desired
+ARGUMENTS
+--------------
+nrows: (int) number of rows of pinyin characters desired. default: 10
+ncols: (int) number of columns of pinyin characters desired.  default: 10
+time: (int) number of seconds given to memorize pinyin. 
+      Note: if not given, no second timer will be used
+      
+EXAMPLES
+------------------
+1.  Give 2 rows with 5 pinyin characters each
+>> python pinyin_generator.py --nrows 2 --ncols 5
+
+2.  Give 10 rows with 3 pinyin characters each and a 1 minute timer.
+>> python pinyin_generator.py --nrows 10 --ncols 3 --time 60
+
 '''
 import numpy as np
 import argparse
 from tqdm import tqdm
 from time import sleep
-parser = argparse.ArgumentParser()
 
+parser = argparse.ArgumentParser()
 parser.add_argument('--nrows', default=10, type=int)
 parser.add_argument('--ncols', default=10, type=int)
 parser.add_argument('--time',  default=-1, type=int)
@@ -58,23 +72,26 @@ yu							nü	lü				ju	qu	xu
 
 pinyin = [name if '\n' not in name else name.replace('\n','') for name in pinyin.split('\t') if name not in ['\n', '']]
 
-nrows = 10
-ncols = 10
-for i in range(NROWS):
-    print(f'{i+1 : 4}: ', end = " ")
-    for i in range(NCOLS):
-        tone = np.random.choice([1,2,3,4,5], 1)[0]
-        pin_rand = np.random.choice(pinyin, size = 1, replace=True)[0]
-        word = f'{tone}-{pin_rand}'
-        print(f'{word :8}', end='')
-    print('')
+pin_rand = np.random.choice(pinyin, size = NROWS * NCOLS, replace=True)
+tone =  np.random.choice([1,2,3,4,5], size = NROWS * NCOLS, replace = True)
+words = [f'{tone[i]}-{pin_rand[i]}' for i in range(NROWS * NCOLS)]
 
+def print_random_pinyin():
+    index = 0
+    for row in range(NROWS):
+        print(f'{row+1 : 4}: ', end = " ")
+        for col in range(NCOLS):
+            print(f'{words[index] :9}', end='')
+            index += 1
+        print('')
+
+print_random_pinyin()
 if TIME < 0:
     exit()
 else:
     
     for sec in tqdm(range(TIME)):
         sleep(1.)
-    print("\033[H\033[J", end="") #from: https://stackoverflow.com/questions/517970/how-to-clear-the-interpreter-console
-    
-    
+    print("\033[H\033[J", end="") #from: https://stackoverflow.com/questions/517970/how-to-clear-the-interpreter-'console'
+    input("Press <Enter> key to reveal the pinyin") #https://stackoverflow.com/questions/577467/pause-in-python
+    print_random_pinyin()

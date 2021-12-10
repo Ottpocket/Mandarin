@@ -21,7 +21,7 @@ EXAMPLES
 import numpy as np
 import argparse
 from tqdm import tqdm
-from time import sleep
+from time import sleep, time
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--nrows', default=10, type=int)
@@ -87,7 +87,9 @@ def print_random_pinyin():
 
 print_random_pinyin()
 if TIME < 0:
-    exit()
+    start = time()
+    input("Press <Enter> once you have finished")
+    print(f'Took {time() - start :.4f} seconds')
 else:
     
     for sec in tqdm(range(TIME)):

@@ -6,15 +6,15 @@ ARGUMENTS
 --------------
 nrows: (int) number of rows of pinyin characters desired. default: 10
 ncols: (int) number of columns of pinyin characters desired.  default: 10
-time: (int) number of seconds given to memorize pinyin. 
+time: (int) number of seconds given to memorize pinyin before recall.
       Note: if not given, no second timer will be used
       
 EXAMPLES
 ------------------
-1.  Give 2 rows with 5 pinyin characters each
+1.  Find how long it takes to memorize 2 rows with 5 pinyin characters each
 >> python pinyin_generator.py --nrows 2 --ncols 5
 
-2.  Give 10 rows with 3 pinyin characters each and a 1 minute timer.
+2.  Give 1 minute to memorize 10 rows with 3 pinyin characters
 >> python pinyin_generator.py --nrows 10 --ncols 3 --time 60
 
 '''

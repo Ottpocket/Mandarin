@@ -41,8 +41,8 @@ def n_digit_rand(digits = chunks):
     digit = np.random.choice(digits, size=1)[0]
     return digit
   
-def display_chunks(sleep_=False, rand_chunks= rand_chunks):
-    for i, chunk in enumerate(rand_chunks):
+def display_chunks(chunks, sleep_=False):
+    for i, chunk in enumerate(chunks):
         if (i % 3 ==0) and (i !=0):
             print('')
         print(f'{chunk}', end=" ")
@@ -52,11 +52,11 @@ def display_chunks(sleep_=False, rand_chunks= rand_chunks):
 rand_chunks = [n_digit_rand() for _ in range(NUM_CHUNKS)] 
 
 start = time()
-display_chunks(sleep_=True, rand_chunks=rand_chunks)
+display_chunks(chunks=rand_chunks, sleep_=True)
 
   
 input("Press <Enter> once you have finished")
 print("\033[H\033[J", end="") #from: https://stackoverflow.com/questions/517970/how-to-clear-the-interpreter-'console'
 print(f'Took {time() - start :.4f} seconds')
 input("Press <Enter> to give the numbers")
-display_chunks(sleep_=False, rand_chunks= rand_chunks)
+display_chunks(chunks= rand_chunks, sleep_=False)

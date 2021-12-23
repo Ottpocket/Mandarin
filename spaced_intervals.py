@@ -22,7 +22,7 @@ from time import sleep, time
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_chunks', default=15, type=int)
-parser.add_argument('--chunk_size', default=10, type=int)
+parser.add_argument('--chunk_size', default=2, type=int)
 parser.add_argument('--display_time', default=1., type=float)
 parser.add_argument('--max_num', default=99, type=int)
 

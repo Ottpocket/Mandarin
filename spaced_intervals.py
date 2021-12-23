@@ -45,7 +45,7 @@ def display_chunks(chunks, sleep_=False):
     for i, chunk in enumerate(chunks):
         if (i % 3 ==0) and (i !=0):
             print('')
-        print(f'{chunk}', end=" ")
+        print(f'{chunk}', end=" ", flush=True)
         if sleep_:
             sleep(DISPLAY_TIME)
   

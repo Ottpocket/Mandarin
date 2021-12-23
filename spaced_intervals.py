@@ -25,16 +25,18 @@ parser.add_argument('--num_chunks', default=15, type=int)
 parser.add_argument('--chunk_size', default=2, type=int)
 parser.add_argument('--display_time', default=1., type=float)
 parser.add_argument('--max_num', default=99, type=int)
+parser.add_argument('--min_num',default=0, type=int)
 
 args = parser.parse_args()
 NUM_CHUNKS = args.num_chunks
 CHUNK_SIZE = args.chunk_size
 DISPLAY_TIME = args.display_time
 MAX_NUM = args.max_num
+MIN_NUM = args.min_num
 
 if len(str(MAX_NUM)) >CHUNK_SIZE:
     raise Exception(f'Chunk max number {MAX_NUM} has over {CHUNK_SIZE} digits!')
-chunks = [str(num) for num in range(MAX_NUM+1)]
+chunks = [str(num) for num in range(MIN_NUM, MAX_NUM+1)]
 chunks = [num if (len(num) == CHUNK_SIZE) else '0' + num for num in chunks]
 
 def n_digit_rand(digits = chunks):
